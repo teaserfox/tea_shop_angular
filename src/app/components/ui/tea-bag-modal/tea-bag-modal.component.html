@@ -1,0 +1,17 @@
+
+
+<div class="tea-bag-wrapper" *ngIf="isOpen$ | async">
+  <div class="tag" (click)="$event.stopPropagation()">Посмотрите наши чайные коллекции</div>
+  <button class="btn btn-lg btn-warning hvr-pulse hvr-float-shadow" data-bs-toggle="modal" (click)="cart()">
+    Смотреть
+  </button>
+  <div class="string"></div>
+  <div class="tea-bag" id="teabag">
+    <div class="paper-texture"></div>
+    <div class="inner-shadow"></div>
+    <div class="folds"></div>
+    <div class="tea-fill"></div>
+  </div>
+</div>
+
+

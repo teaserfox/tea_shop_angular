@@ -1,4 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Subscription, timer} from "rxjs";
+import {TeaBagModalService} from "../../services/tea-bag-modal.service";
 declare var $: any;
 
 @Component({
@@ -7,7 +9,7 @@ declare var $: any;
   styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     ($('.autoplay') as any).slick({
@@ -32,10 +34,17 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   }
 
+   private popupSub?: Subscription;
 
-  constructor() { }
+  constructor(private modalService: TeaBagModalService) { }
 
   ngOnInit(): void {
+   this.popupSub = timer(10000).subscribe(() => {
+     this.modalService.open();
+   })
   }
 
+  ngOnDestroy(): void {
+    this.popupSub?.unsubscribe();
+  }
 }

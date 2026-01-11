@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CatalogType} from "../../types/catalog.type";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-catalog',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogComponent implements OnInit {
 
-  constructor() { }
+  catalog: CatalogType[] = [];
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
+    this.catalog = this.route.snapshot.data['catalog'];
   }
-
 }
