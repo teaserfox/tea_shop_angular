@@ -1,0 +1,68 @@
+<div class="main__container-order wow animate__animated animate__fadeInLeft min-vh-100">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-7" id="order">
+      <form *ngIf="!orderSuccess" class="row g-3 align-items-center mb-5" novalidate [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <h2 class="text-center mb-5 mt-5 fw-bold">
+          Сделать заказ
+        </h2>
+        <div class="col-md-4 col-12">
+          <p>Имя</p>
+          <input type="text" class="form-control" id="autoSizingInputName" formControlName="name">
+          <label class="visually-hidden" for="autoSizingInputName">name</label>
+        </div>
+        <div class="col-md-4 col-12">
+          <p>Фамилия</p>
+          <input type="text" class="form-control" id="autoSizingInputUsername" formControlName="last_name">
+          <label class="visually-hidden" for="autoSizingInputUsername">username</label>
+        </div>
+        <div class="col-md-4 col-12">
+          <p>Телефон</p>
+          <input type="tel" class="form-control" id="autoSizingInputPhone" formControlName="phone">
+          <label class="visually-hidden" for="autoSizingInputPhone">phone</label>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Страна</p>
+          <input type="text" class="form-control" id="autoSizingInputState" formControlName="country">
+          <label class="visually-hidden" for="autoSizingInputState">state</label>
+        </div>
+        <div class="col-md-6 col-12">
+          <p>Индекс</p>
+          <input type="text" class="form-control" id="autoSizingInputIndex" placeholder="* * * * * *" formControlName="zip">
+          <label class="visually-hidden" for="autoSizingInputIndex">index</label>
+        </div>
+        <div class="col-12">
+          <p>Адрес</p>
+          <input type="text" class="form-control" id="autoSizingInputAddress" formControlName="address">
+          <label class="visually-hidden" for="autoSizingInputAddress">address</label>
+        </div>
+        <div class="col-12">
+          <p>Товар</p>
+          <input type="text" class="form-control" id="autoSizingInputProduct" formControlName="product"
+                 [class.is-invalid]="signInForm.errors?.['productRequired']">
+          <label class="visually-hidden" for="autoSizingInputProduct">product</label>
+          <div
+            *ngIf="signInForm.errors?.['productRequired']"
+            class="invalid-feedback d-block">
+            Товар не выбран
+          </div>
+        </div>
+        <div class="col-12">
+          <p>Комментарий к заказу</p>
+          <textarea type="text" class="form-control" id="autoSizingInputText" formControlName="comment"></textarea>
+          <label class="visually-hidden" for="autoSizingInputText">text</label>
+        </div>
+        <button type="submit" class="col-md-3 btn btn-primary hvr-pulse hvr-float-shadow"
+                id="request" [disabled]="signInForm.invalid || loading">
+          {{ loading ? 'Отправка...' : 'Отправить' }}</button>
+        <span *ngIf="orderError" class="text-danger ms-3">Произошла ошибка. Попробуйте еще раз.</span>
+      </form>
+      <div *ngIf="orderSuccess" class="container d-flex justify-content-center align-items-center min-vh-100" id="order-block-none">
+        <div class="text-center col-lg-6 col-md-8 col-10">
+          <h2 class="fw-bold text-primary">
+            Спасибо за заказ. Мы свяжемся с вами в ближайшее время!
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

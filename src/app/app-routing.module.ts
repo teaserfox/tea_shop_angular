@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MainComponent} from "./components/pages/main/main.component";
-import {CatalogComponent} from "./components/pages/catalog/catalog.component";
-import {OrderComponent} from "./components/pages/order/order.component";
+import {TeaBagModalComponent} from "./shared/ui/tea-bag-modal/tea-bag-modal.component";
+
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
-  {path: 'catalog', component: CatalogComponent},
-  {path: 'order', component: OrderComponent},
+  {
+    path: '',
+    children: [
+      {path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)},
+      {path: 'order', loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule)},
+      {path: 'catalog', loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule)},
+      {path: 'product', loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule)},
+    ]
+  },
+
+
+  {path: 'tea-bag-modal', component: TeaBagModalComponent},
 ];
 
 @NgModule({

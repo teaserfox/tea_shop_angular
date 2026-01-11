@@ -1,0 +1,132 @@
+/* отключаем стандартные стили Bootstrap для модалки */
+::ng-deep .tea-modal-window .modal {
+  all: unset;          /* сброс всех стилей */
+  position: initial;
+}
+
+::ng-deep .tea-modal-window .modal-dialog {
+  all: unset;
+  position: absolute;  /* можно позиционировать свободно */
+  top: 40px;
+  right: 10px;
+  margin: 0;
+  transform: none;
+}
+
+::ng-deep .tea-modal-window .modal-content {
+  all: unset;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.tea-bag-wrapper {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  z-index: 1;
+
+  /* 3D наклон */
+  perspective: 800px;
+
+  &:hover #teabag {
+    transform: rotateX(6deg) rotateY(-5deg);
+  }
+}
+
+/* Ярлык */
+.tag {
+  width: 350px;
+  height: 42px;
+  //background: #ffd644;
+  //border: 2px solid #caa100;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 48px;
+  font-weight: 700;
+  font-family: sans-serif;
+  margin-bottom: 6px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+  z-index: 3;
+}
+
+/* Ниточка */
+.string {
+  width: 2px;
+  height: 40px;
+  background: #d7d7d7;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  margin-bottom: 4px;
+}
+
+/* Пакетик */
+.tea-bag {
+  width: 140px;
+  height: 170px;
+  background: #ffffff;
+  border: 2px solid #d9d1be;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+  /* полупрозрачные края */
+  mask-image: radial-gradient(circle 110px at center, black 60%, transparent 100%);
+}
+
+/* Текстура */
+.paper-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' fill-opacity='0.18'>\
+    <filter id='noise'>\
+      <feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/>\
+    </filter>\
+    <rect width='100%' height='100%' filter='url(%23noise)'/>\
+  </svg>");
+  opacity: 0.28;
+}
+
+/* Внутренняя тень (inner shadow) */
+.inner-shadow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 8px 14px rgba(0,0,0,0.35),
+  inset 0 -4px 10px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+
+/* Складки */
+.folds {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(0,0,0,0.12) 50%,
+      transparent 100%
+    ),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(0,0,0,0.1) 30%,
+      transparent 80%
+    );
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+}
+
+/* Чёрный чай */
+.tea-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 48%;
+  background: linear-gradient(to top, #2f1d0d, #ee7a10, #4a2f18);
+  opacity: 0.92;
+}

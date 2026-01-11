@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
@@ -9,10 +9,14 @@ import {NavigationEnd, Router} from "@angular/router";
 export class AppComponent {
   title: string = 'tee_shop_angular';
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
+  constructor(private router: Router, private ngZone: NgZone) {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+        this.ngZone.runOutsideAngular(() => {
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+          });
+        });
       }
     });
   }
