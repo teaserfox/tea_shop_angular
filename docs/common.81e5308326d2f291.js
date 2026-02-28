@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktee_shop_agular=self.webpackChunktee_shop_agular||[]).push([[592],{5237:(_,t,r)=>{r.d(t,{N:()=>c});var a=r(8256);let c=(()=>{class e{constructor(){this.product=""}}return e.\u0275fac=function(u){return new(u||e)},e.\u0275prov=a.Yz7({token:e,factory:e.\u0275fac,providedIn:"root"}),e})()}}]);
