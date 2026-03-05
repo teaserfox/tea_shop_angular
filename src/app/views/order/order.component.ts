@@ -43,11 +43,8 @@ export class OrderComponent implements OnInit {
   loading = false;
 
   ngOnInit(): void {
-    if (this.cartService.product) {
-      this.signInForm.patchValue({
-        product: this.cartService.product
-      });
-    }
+    const product = this.cartService.getProduct();
+    this.signInForm.patchValue({ product });
   }
 
   signIn (): void {
@@ -67,6 +64,7 @@ export class OrderComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         if (response?.success === 1) {
+          this.cartService.clearProduct();
           this.orderSuccess = true;
         } else {
           this.orderError = true;

@@ -22,8 +22,8 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(title: string): void {
-    this.cartService.product = title;
-    this.router.navigate(['/order'])
+    this.cartService.setProduct(title);
+    this.router.navigate(['/order']);
   }
 
 }
