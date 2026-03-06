@@ -9,7 +9,7 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
       { path: 'order', loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule) },
       { path: 'catalog', loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule) },
-      { path: 'product/:id', loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule) },
+      { path: 'product', loadChildren: () => import('./views/products/products.module').then(m => m.ProductsModule) },
     ]
   },
   { path: 'tea-bag-modal', component: TeaBagModalComponent },
