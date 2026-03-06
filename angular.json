@@ -23,7 +23,8 @@
               "slick-carousel",
               "magnific-popup"
             ],
-            "outputPath": "dist/tee_shop_agular",
+            "outputPath": "docs",
+            "baseHref": "/tea_shop_angular/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

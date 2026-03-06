@@ -18,7 +18,9 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.product = this.route.snapshot.data['product'];
+    this.route.data.subscribe(data => {
+      this.product = data['product'];
+    });
   }
 
   addToCart(title: string): void {
